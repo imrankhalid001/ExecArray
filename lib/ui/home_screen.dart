@@ -5,8 +5,10 @@ import 'package:exec_array/ui/ProductDetailsScreen.dart';
 import 'package:exec_array/ui/categories_screen.dart';
 import 'package:exec_array/ui/event_screen.dart';
 import 'package:exec_array/ui/favoturite_screen.dart';
+import 'package:exec_array/ui/items/category_items/category_item.dart';
 import 'package:exec_array/ui/items/event_items/event_item.dart';
 import 'package:exec_array/ui/my_account_screen.dart';
+import 'package:exec_array/ui/search_view_screen.dart';
 import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Define the pages you want to display for each tab
   final List<Widget> _pages = [
     HomePage(),
-    const CategoriesScreen(),
+    const SearchViewScreen(),
     const EventScreen(),
     const MyAccountScreen(),
     const FavoturiteScreen()
@@ -117,16 +119,10 @@ Widget buildMyNavBar(BuildContext context)
 }
 
 
-
-
-
-
-// Define the HomePage, CategoriesPage, EventsPage, and AccountPage classes
+// Home page
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  //  fetchData();
-
     return  SafeArea(
       child: Scaffold(
       
@@ -281,10 +277,10 @@ class HomePage extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [
-                    EventItem(imagePath:'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Wedding'),
-                    EventItem(imagePath:'https://images.unsplash.com/photo-1501527459-2d5409f8cf9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Concert'),
-                    EventItem(imagePath:'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Conference'),
-                    EventItem(imagePath:'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Event'),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Wedding', categoryScreen: false, ),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1501527459-2d5409f8cf9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Concert' , categoryScreen: false,),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Conference' , categoryScreen: false,),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Event' , categoryScreen: false,),
 
                   ],
                 ),
@@ -570,71 +566,6 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 
-    
-
-
-/// this is not working witch later 
-void fetchData() async {
-  bool isConnected = await Utils().checkInternetConnection();
-  if (isConnected) {
-    // Proceed with network call
-      imgList = [
-  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1798&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1524777313293-86d2ab467344?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1665607437981-973dcd6a22bb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1633102467628-6511a5129a03?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  
-];
-  } else {
-    // Handle no internet connection scenario
-   imgList = [
-  'assets/placeholder.jpeg',
-    'assets/placeholder.jpeg',
-      'assets/placeholder.jpeg'
-  
-];
-
-  }
-}
 
 
 
-class CategoryItem extends StatelessWidget {
-  final String imagePath;
-  final String label;
-
-  const CategoryItem({required this.imagePath, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(8.0),
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 4,
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Image.asset(imagePath),
-          ),
-        ),
-        Text(label, style: TextStyle(fontSize: 14)),
-      ],
-    );
-  }
-}

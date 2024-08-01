@@ -10,15 +10,50 @@ class CategoriesScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Events', style: TextStyle(fontSize: 20)),
-                ],
+
+             Stack(
+            children: [
+              // Display the image
+              Image.asset(
+                'assets/home_top.jpg',
+                fit: BoxFit.cover,
+                width: double.infinity,
+                  height: 80,
               ),
-            ),
+             
+
+ // Icon button at the left
+              Positioned(
+                left: 0,
+                top: 20,
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_sharp, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Categories',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Segoe UI',
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
+               
+              
+            ],
+          ),
+      
             SizedBox(height: 20),
             Container(
                 // Set the height for the grid view
@@ -27,31 +62,23 @@ class CategoriesScreen extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.70,
+                  childAspectRatio: 0.65,
                 ),
                 itemCount: 4, // Number of items to display
                 itemBuilder: (context, index) {
                   // Data for each item
                   final items = [
                     {
-                      'imagePath':
-                          'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                      'label': 'Wedding'
+                      'imagePath': 'assets/chair.jpg', 'label': 'Chairs'
                     },
                     {
-                      'imagePath':
-                          'https://images.unsplash.com/photo-1501527459-2d5409f8cf9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                      'label': 'Concert'
+                     'imagePath': 'assets/canopies.jpg', 'label': 'canopies'
                     },
                     {
-                      'imagePath':
-                          'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                      'label': 'Conference'
+                     'imagePath': 'assets/speaker.jpg', 'label': 'Speakers'
                     },
                     {
-                      'imagePath':
-                          'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                      'label': 'Event'
+                      'imagePath': 'assets/tents.jpg', 'label': 'Tents'
                     },
                   ];
 
@@ -59,6 +86,7 @@ class CategoriesScreen extends StatelessWidget {
                   return EventItem(
                     imagePath: items[index]['imagePath']!,
                     label: items[index]['label']!,
+                    categoryScreen: true,
                   );
                 },
               ),

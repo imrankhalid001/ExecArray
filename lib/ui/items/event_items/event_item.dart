@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class EventItem extends StatelessWidget {
   final String imagePath;
   final String label;
+    final bool categoryScreen;
 
-  const EventItem({required this.imagePath, required this.label});
+  const EventItem({super.key, required this.imagePath, required this.label, required this.categoryScreen});
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Container(
@@ -25,9 +27,20 @@ class EventItem extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
+
+          child:  Column(
             children: [
-              CachedNetworkImage(
+
+              categoryScreen 
+              ?  Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Image.asset(imagePath,
+                      height: 100,
+                      width: 100,
+                      ),
+                    )
+
+              : CachedNetworkImage(
                 imageUrl: imagePath,
                 errorWidget: (context, url, error) => Icon(Icons.error),
                 height: 150,

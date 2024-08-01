@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:exec_array/models/product.dart';
+import 'package:exec_array/ui/ProductDetailsScreen.dart';
 import 'package:exec_array/ui/categories_screen.dart';
 import 'package:exec_array/ui/event_screen.dart';
 import 'package:exec_array/ui/favoturite_screen.dart';
+import 'package:exec_array/ui/items/event_items/event_item.dart';
 import 'package:exec_array/ui/my_account_screen.dart';
 import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,16 @@ import 'package:flutter/material.dart';
   'https://images.unsplash.com/photo-1633102467628-6511a5129a03?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   
 ];
+
+ const String productDes = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.....';
+
+ // Example product list
+  final List<Product> products = [
+    Product(name: 'Table', imagePath: 'assets/table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(name: 'Round Table', imagePath: 'assets/round_table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(name: 'BBQ Grill', imagePath: 'assets/stove1.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(name: 'Charcoal Grill', imagePath: 'assets/stove2.jpg', salePrice: 23, rentPrice: 5 , productDescraption: productDes),
+  ];
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -99,44 +112,6 @@ Widget buildMyNavBar(BuildContext context)
 }
 
   
-//   Widget buildMyNavBar(BuildContext context) {
-//   return Container(
-//     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-//     decoration: const BoxDecoration(
-//       color: Colors.white,
-//       borderRadius: BorderRadius.only(
-//         topLeft: Radius.circular(20),
-//         topRight: Radius.circular(20),
-//       ),
-//     ),
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         _buildNavItem(icon: Icons.home, index: 0),
-//         _buildNavItem(icon: Icons.search, index: 1),
-//         _buildNavItem(icon: Icons.shopping_cart, index: 2),
-//         _buildNavItem(icon: Icons.favorite, index: 3),
-//         _buildNavItem(icon: Icons.other_houses_sharp, index: 4)
-//       ],
-//     ),
-//   );
-// }
-
-// Widget _buildNavItem({required IconData icon, required int index}) {
-//   return InkWell(
-//     onTap: () {
-//       setState(() {
-//         _currentIndex = index;
-//       });
-//     },
-//     child: Icon(
-//       icon,
-//       color: _currentIndex == index ? Theme.of(context).primaryColor : Colors.grey,
-//     ),
-//   );
-// }
-
-
 
 
 }
@@ -237,27 +212,31 @@ class HomePage extends StatelessWidget {
                           items: imageSliders,
                       ),
 
-
-                // child: PageView(
-                //   children: [
-                //     Image.asset('assets/home_top.jpg', fit: BoxFit.cover),
-                //     Image.asset('assets/home_top.jpg', fit: BoxFit.cover),
-                //     Image.asset('assets/home_top.jpg', fit: BoxFit.cover),
-                //   ],
-                // ),
               ),
-
-
-
 
               
               const SizedBox(height: 10),
       
               
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text('Categories', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        ),
+         Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Categories', style: TextStyle(fontSize: 20)),
+
+                  TextButton(
+                    onPressed: () {
+                        Navigator.push(context, MaterialPageRoute
+                  (builder: (context)=> const CategoriesScreen())
+                  );
+                      // Navigate to the full products list screen
+                    },
+                    child: Text('See All'),
+                  ),
+                ],
+              ),
+            ),
       
         Container(
           height: 120,
@@ -277,19 +256,35 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 10),
       
               // Events Section
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Events', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Events', style: TextStyle(fontSize: 20)),
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to the full products list screen
+                    Navigator.push(context, MaterialPageRoute
+                    (builder: (context)=> const EventScreen()));
+
+                    },
+                    child: Text('See All'),
+                  ),
+                ],
               ),
+            ),
+
+
               Container(
                 height: 300,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [
-                    evenetItem(imagePath:'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Wedding'),
-                    evenetItem(imagePath:'https://images.unsplash.com/photo-1501527459-2d5409f8cf9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Concert'),
-                    evenetItem(imagePath:'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Conference'),
-                    evenetItem(imagePath:'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Event'),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Wedding'),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1501527459-2d5409f8cf9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Concert'),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Conference'),
+                    EventItem(imagePath:'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label:'Event'),
 
                   ],
                 ),
@@ -311,7 +306,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0), // Rounded corners
               child: CachedNetworkImage(
               imageUrl: 'https://images.unsplash.com/photo-1472653431158-6364773b2a56?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              placeholder: (context, url) => CircularProgressIndicator(),
+          
               errorWidget: (context, url, error) => Icon(Icons.error),
               width: double.infinity,
               height: double.infinity,
@@ -377,7 +372,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0), // Rounded corners
               child: CachedNetworkImage(
               imageUrl: 'https://images.unsplash.com/photo-1595407753234-0882f1e77954?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              placeholder: (context, url) => CircularProgressIndicator(),
+            
               errorWidget: (context, url, error) => Icon(Icons.error),
               width: double.infinity,
               height: double.infinity,
@@ -432,22 +427,34 @@ class HomePage extends StatelessWidget {
 
       
               // Popular Products Section
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Popular Products', style: TextStyle(fontSize: 20)),
+              Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Popular Products', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to the full products list screen
+                    },
+                    child: Text('See All'),
+                  ),
+                ],
               ),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.75,
-                ),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return productItem('Product Name', 'assets/home_top.jpg', 32, 5);
-                },
+            ),
+
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.70,
               ),
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                return productItem(context, products[index]);
+              },
+            ),
             ],
           ),
         ),
@@ -457,78 +464,113 @@ class HomePage extends StatelessWidget {
 
 
 
-  Widget productItem(String name, String imagePath, double salePrice, double rentPrice) {
-    return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(imagePath, fit: BoxFit.cover, height: 100, width: double.infinity),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(name, style: TextStyle(fontSize: 16)),
+ Widget productItem(BuildContext context, Product product) {
+    return InkWell(
+      onTap: () {
+        // Navigate to the product details page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(product: product),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Sale: \$$salePrice'),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text('Rent: \$$rentPrice / Day'),
-          ),
-        ],
+        );
+      },
+      child: Card(
+        elevation: 10,
+         shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+
+        ),
+        child:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius:  BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
+
+              
+              child: Image.asset(product.imagePath, fit: BoxFit.cover, height: 130, width: double.infinity)
+              ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(product.name, style: TextStyle(fontSize: 16)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text('Sale: \$${product.salePrice}', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text('Rent: \$${product.rentPrice} / Day', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: IconButton(
+                icon: Icon(Icons.add_shopping_cart),
+                onPressed: () {
+                  // Add to cart logic
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+  
 
 
-
+// Image Slider
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
-          child: Container(
-            margin: EdgeInsets.all(5.0),
-            child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                child: Stack(
-                  children: <Widget>[
-                    CachedNetworkImage(
-                      imageUrl: item,
-                      placeholder: (context, url) => CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      fit: BoxFit.cover,
-                      width: 1000.0
-                      ),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromARGB(200, 0, 0, 0),
-                              Color.fromARGB(0, 0, 0, 0)
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                          ),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
-                        child: Text(
-                          'No. ${imgList.indexOf(item)} image',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+          margin: EdgeInsets.all(5.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            child: Stack(
+              children: <Widget>[
+                CachedNetworkImage(
+                  imageUrl: item,
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.cover,
+                  width: 1000.0,
+                ),
+                Container(
+                  color: Colors.black.withOpacity(0.3), // Dark overlay with alpha
+                  child: const Center(
+                    child:Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                     const Text(
+                    'ExecArray',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                     fontFamily: 'Segoe UI',
+                      color: Colors.white
                     ),
-                  ],
-                )),
+                  ),
+      
+                  
+                  const Text(
+                    'EVENT MANAGEMENT',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                      ]
+                    )
+                  ),
+                ),
+              ],
+            ),
           ),
         ))
     .toList();
+
+
+    
 
 
 /// this is not working witch later 
@@ -559,7 +601,6 @@ void fetchData() async {
   }
 }
 
-}
 
 
 class CategoryItem extends StatelessWidget {
@@ -597,57 +638,3 @@ class CategoryItem extends StatelessWidget {
     );
   }
 }
-
-
-
-///  event item 
-/// 
-class evenetItem extends StatelessWidget {
-  final String imagePath;
-  final String label;
-
-  const evenetItem({required this.imagePath, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(8.0),
-          width: 150,
-          height: 250,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 4,
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-                CachedNetworkImage(
-                  imageUrl: imagePath,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                  height: 150,
-                  fit: BoxFit.cover
-                  ),
-              Text(label, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text('Brief description of event Lorem ipsum dolor sit amet....'))
-            ],
-            
-            
-          ),
-        ),
-     
-      ],
-    );
-  }
-}
-
-

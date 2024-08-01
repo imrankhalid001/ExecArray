@@ -1,7 +1,6 @@
 import 'package:exec_array/routes/routes.dart';
 import 'package:exec_array/routes/routes_name.dart';
 import 'package:exec_array/ui/home_screen.dart';
-import 'package:exec_array/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

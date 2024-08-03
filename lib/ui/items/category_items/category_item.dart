@@ -29,6 +29,7 @@ class CategoryItem extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Image.asset(imagePath),
           ),
+          
         ),
         Text(label, style: TextStyle(fontSize: 14)),
       ],

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:exec_array/models/product.dart';
 import 'package:exec_array/ui/ProductDetailsScreen.dart';
+import 'package:exec_array/ui/cart_screen.dart';
 import 'package:exec_array/ui/categories_screen.dart';
 import 'package:exec_array/ui/event_screen.dart';
 import 'package:exec_array/ui/favoturite_screen.dart';
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     HomePage(),
     const SearchViewScreen(),
-    const EventScreen(),
+     CartScreen(),
     const MyAccountScreen(),
     const FavoturiteScreen()
   ];

@@ -51,8 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
     HomePage(),
     const SearchViewScreen(),
      CartScreen(),
-    const MyAccountScreen(),
-    const FavoturiteScreen()
+      const FavoturiteScreen(),
+    const MyAccountScreen()
+   
   ];
 
   @override

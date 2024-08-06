@@ -1,3 +1,4 @@
+import 'package:exec_array/provider/user_provider.dart';
 import 'package:exec_array/provider/cart_provider.dart';
 import 'package:exec_array/routes/routes.dart';
 import 'package:exec_array/routes/routes_name.dart';
@@ -10,6 +11,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
+         ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: const MyApp(),
     ),

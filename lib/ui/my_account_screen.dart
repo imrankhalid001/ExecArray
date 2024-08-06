@@ -1,10 +1,14 @@
+import 'package:exec_array/provider/user_provider.dart';
+import 'package:exec_array/routes/routes_name.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyAccountScreen extends StatelessWidget {
   const MyAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+        
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Account', style: TextStyle(color: Colors.white),),
@@ -22,7 +26,7 @@ class MyAccountScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildProfileSection(),
+            _buildProfileSection(context),
             _buildMenuSection(context),
           ],
         ),
@@ -30,7 +34,9 @@ class MyAccountScreen extends StatelessWidget {
     );
   }
 
-   Widget _buildProfileSection() {
+   Widget _buildProfileSection(BuildContext context) {
+      final userProvider = Provider.of<UserProvider>(context);  
+
     return Column(
       children: [
         Stack(
@@ -42,14 +48,14 @@ class MyAccountScreen extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            const Positioned(
+             Positioned(
               left: 0,
               right: 0,
               top: 100, // Adjust this value to position the CircleAvatar
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Card(
+                  const Card(
                     elevation: 5,
                     shape: CircleBorder(),
                     child: CircleAvatar(
@@ -59,7 +65,7 @@ class MyAccountScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Hi,\nImran Khalid',
+                    'Hi,''\n' '${userProvider.firstName} ${userProvider.lastName}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -105,6 +111,7 @@ class MyAccountScreen extends StatelessWidget {
             title: 'My Details',
             onTap: () {
               // Handle Sell With Us tap
+                Navigator.pushNamed(context, RoutesName.myDetailsScreen);
             },
           ),
 

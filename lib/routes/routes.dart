@@ -1,6 +1,7 @@
 import 'package:exec_array/routes/routes_name.dart';
 import 'package:exec_array/ui/home_screen.dart';
 import 'package:exec_array/ui/login_screen.dart';
+import 'package:exec_array/ui/my_details_screen.dart';
 import 'package:exec_array/ui/signup_screen.dart';
 import 'package:exec_array/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,11 @@ class Routes {
    case RoutesName.splash:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SplashScreen());
+
+            
+   case RoutesName.myDetailsScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>  MyDetailsScreen());
 
       default:
         return MaterialPageRoute(builder: (_) {

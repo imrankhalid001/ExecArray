@@ -31,7 +31,7 @@ class FavoturiteScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         ProductCard(
-                          productName: 'Product Name',
+                          productName: 'Table',
                           description: 'Brief description of category Lorem ipsum dolor sit amet, consetetur sadipscing elitr,',
                           salePrice: 23,
                           rentPrice: 5,

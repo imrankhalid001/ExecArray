@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:exec_array/models/product.dart';
+import 'package:exec_array/provider/cart_provider.dart';
 import 'package:exec_array/ui/ProductDetailsScreen.dart';
 import 'package:exec_array/ui/cart_screen.dart';
 import 'package:exec_array/ui/categories_screen.dart';
@@ -12,6 +13,7 @@ import 'package:exec_array/ui/my_account_screen.dart';
 import 'package:exec_array/ui/search_view_screen.dart';
 import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -463,6 +465,8 @@ class HomePage extends StatelessWidget {
 
 
  Widget productItem(BuildContext context, Product product) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    
     return InkWell(
       onTap: () {
         // Navigate to the product details page
@@ -506,6 +510,12 @@ class HomePage extends StatelessWidget {
                 icon: Icon(Icons.add_shopping_cart),
                 onPressed: () {
                   // Add to cart logic
+                  cartProvider.addItem(CartItem(
+                    name: product.name,
+                    image: product.imagePath,
+                    rentalPrice: product.rentPrice,
+                    purchasePrice: product.salePrice,
+                  ));
                 },
               ),
             ),

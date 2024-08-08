@@ -1,3 +1,4 @@
+import 'package:exec_array/provider/product_provider.dart';
 import 'package:exec_array/provider/user_provider.dart';
 import 'package:exec_array/provider/cart_provider.dart';
 import 'package:exec_array/routes/routes.dart';
@@ -10,8 +11,10 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CartProvider()),
-         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()..loadCartItems()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+
       ],
       child: const MyApp(),
     ),
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
          colorScheme: ColorScheme.fromSeed(seedColor:Color(0xFF326381)),
         useMaterial3: true,
       ),
-      initialRoute: RoutesName.home,
+      initialRoute: RoutesName.splash,
       onGenerateRoute: Routes.generateRoute,
       home:  HomePage(),
     );

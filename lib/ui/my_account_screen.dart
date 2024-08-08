@@ -22,6 +22,7 @@ class MyAccountScreen extends StatelessWidget {
             },
           ),
         ],
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -60,7 +61,7 @@ class MyAccountScreen extends StatelessWidget {
                     shape: CircleBorder(),
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage('assets/user_profile.png'),
+                      backgroundImage: AssetImage('assets/speaker.jpg'),
                     ),
                   ),
                   SizedBox(height: 16),

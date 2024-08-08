@@ -39,6 +39,9 @@ dependencies:
   carousel_slider: ^4.2.1
   connectivity_plus: ^3.0.3
   cached_network_image: ^3.3.1
+  sqflite: ^2.2.8
+  path: ^1.8.3
+
 
 
   # The following adds the Cupertino Icons font to your application.

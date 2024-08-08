@@ -35,7 +35,7 @@ class MyDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
+            TextFormField(
               controller: firstNameController,
               decoration: InputDecoration(
                 labelText: 'FIRST NAME',
@@ -44,7 +44,7 @@ class MyDetailsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            TextField(
+            TextFormField(
               controller: lastNameController,
               decoration: InputDecoration(
                 labelText: 'LAST NAME',
@@ -53,7 +53,7 @@ class MyDetailsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            TextField(
+            TextFormField(
               controller: phoneNumberController,
               decoration: InputDecoration(
                 labelText: 'PHONE NUMBER',

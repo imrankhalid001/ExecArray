@@ -10,8 +10,8 @@ class FavoturiteScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('SAVED ITEMS', style: TextStyle(color: Colors.white),),
         backgroundColor: Theme.of(context).primaryColor,
-
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: const DefaultTabController(
         length: 2,

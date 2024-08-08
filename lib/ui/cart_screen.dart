@@ -1,5 +1,6 @@
 import 'package:exec_array/components/round_button.dart';
 import 'package:exec_array/provider/cart_provider.dart';
+import 'package:exec_array/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,8 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-
+   final  productProvider = Provider.of<ProductProvider>(context);
+   
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -18,6 +20,8 @@ class CartScreen extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
+        automaticallyImplyLeading: false,
+        
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -123,8 +127,7 @@ class CartItemWidget extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              cartProvider.items[index].isRental = true;
-                              cartProvider.notifyListeners();
+                               cartProvider.toggleRental(index, true);
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -149,8 +152,7 @@ class CartItemWidget extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              cartProvider.items[index].isRental = false;
-                              cartProvider.notifyListeners();
+                              cartProvider.toggleRental(index, false);
                             },
                             child: Container(
                               decoration: BoxDecoration(

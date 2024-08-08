@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:exec_array/models/product.dart';
 import 'package:exec_array/provider/cart_provider.dart';
+import 'package:exec_array/provider/product_provider.dart';
 import 'package:exec_array/ui/ProductDetailsScreen.dart';
 import 'package:exec_array/ui/cart_screen.dart';
 import 'package:exec_array/ui/categories_screen.dart';
@@ -34,15 +35,19 @@ import 'package:provider/provider.dart';
 
  // Example product list
   final List<Product> products = [
-    Product(name: 'Table', imagePath: 'assets/table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
-    Product(name: 'Round Table', imagePath: 'assets/round_table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
-    Product(name: 'BBQ Grill', imagePath: 'assets/stove1.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
-    Product(name: 'Charcoal Grill', imagePath: 'assets/stove2.jpg', salePrice: 23, rentPrice: 5 , productDescraption: productDes),
+    Product(id: 0, name: 'Table', imagePath: 'assets/table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(id: 1, name: 'Round Table', imagePath: 'assets/round_table.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(id: 2, name:  'BBQ Grill', imagePath: 'assets/stove1.jpg', salePrice: 23, rentPrice: 5, productDescraption: productDes),
+    Product(id:3, name:  'Charcoal Grill', imagePath: 'assets/stove2.jpg', salePrice: 23, rentPrice: 5 , productDescraption: productDes),
   ];
 
 class HomeScreen extends StatefulWidget {
+    // Add the key parameter to the constructor
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
+  
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -127,6 +132,7 @@ Widget buildMyNavBar(BuildContext context)
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+ 
     return  SafeArea(
       child: Scaffold(
       
@@ -466,7 +472,9 @@ class HomePage extends StatelessWidget {
 
  Widget productItem(BuildContext context, Product product) {
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
-    
+     final productProvider = Provider.of<ProductProvider>(context);
+
+
     return InkWell(
       onTap: () {
         // Navigate to the product details page
@@ -489,7 +497,6 @@ class HomePage extends StatelessWidget {
             ClipRRect(
               borderRadius:  BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
 
-              
               child: Image.asset(product.imagePath, fit: BoxFit.cover, height: 130, width: double.infinity)
               ),
             Padding(
@@ -510,12 +517,18 @@ class HomePage extends StatelessWidget {
                 icon: Icon(Icons.add_shopping_cart),
                 onPressed: () {
                   // Add to cart logic
+                  productProvider.addProduct(product);
+                   Utils.toastMessage('${product.name} is added to cart');
                   cartProvider.addItem(CartItem(
-                    name: product.name,
-                    image: product.imagePath,
-                    rentalPrice: product.rentPrice,
-                    purchasePrice: product.salePrice,
-                  ));
+                  id: product.id, // Ensure the product ID is used as CartItem ID
+                  name: product.name,
+                  image: product.imagePath,
+                  rentalPrice: product.rentPrice,
+                  purchasePrice: product.salePrice,
+                  quantity: 1,
+                  duration: 1,
+                  isRental: true,
+                ));
                 },
               ),
             ),

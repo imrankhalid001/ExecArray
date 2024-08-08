@@ -8,6 +8,11 @@ class UserProvider with ChangeNotifier {
   String get firstName => _firstName;
   String get lastName => _lastName;
 
+
+  UserProvider() {
+    loadUserDetails();
+  }
+
   Future<void> loadUserDetails() async {
     final prefs = await SharedPreferences.getInstance();
     _firstName = prefs.getString('firstName') ?? 'john';

@@ -16,8 +16,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
 
+
+  final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
@@ -102,7 +105,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
            
               const SizedBox(height: 16),
+
+              
+              // email text field
+              TextFormField(
+                controller: _firstNameController,
+                keyboardType: TextInputType.text,
+                focusNode: emailFocusNode,
+                decoration:  InputDecoration(
+                    hintText: 'First Name',
+                    labelText: 'John Doe',
+                    prefixIcon: const Icon(Icons.person),
+                     border: OutlineInputBorder(
+                     borderRadius: BorderRadius.circular(10.0), // Adjust the corner radius as needed
+                     borderSide: const BorderSide(
+                      color: Colors.blue, // Set the border color
+                      width: 2.0, // Set the border width
+                     ),
+                     )
+                    ),
+                onFieldSubmitted: (value) {
+                  Utils.fieldFocusChange(
+                      context, emailFocusNode, passwordFocusNode);
+                },
+              ),
           
+
+            const SizedBox(
+                height: 20
+              ),
+
           
               // email text field
               TextFormField(
@@ -142,6 +174,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                           hintText: 'Password',
                           labelText: 'Password',
+                          prefixIcon: Icon(Icons.lock_open_rounded),
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                _obsecurePassword.value =
+                                !_obsecurePassword.value;
+                              },
+                              child: Icon(_obsecurePassword.value
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined)),
+
+                                   border: OutlineInputBorder(
+                     borderRadius: BorderRadius.circular(10.0), // Adjust the corner radius as needed
+                     borderSide: const BorderSide(
+                      color: Colors.blue, // Set the border color
+                      width: 2.0, // Set the border width
+                     ),
+                     ) ),
+                    );
+                  }),
+
+
+                     const SizedBox(
+                height: 20
+              ),
+
+              // password text field
+              ValueListenableBuilder(
+                  valueListenable: _obsecurePassword,
+                  builder: (context, value, child) {
+                    return TextFormField(
+                      obscureText: _obsecurePassword.value,
+                      controller: _confirmPasswordController,
+                      focusNode: passwordFocusNode,
+                      decoration: InputDecoration(
+                          hintText: 'Confirm Password',
+                          labelText: 'Confirm Password',
                           prefixIcon: Icon(Icons.lock_open_rounded),
                           suffixIcon: InkWell(
                               onTap: () {

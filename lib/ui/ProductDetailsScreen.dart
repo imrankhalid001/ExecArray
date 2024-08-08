@@ -1,6 +1,10 @@
 import 'package:exec_array/components/round_button.dart';
 import 'package:exec_array/models/product.dart';
+import 'package:exec_array/provider/cart_provider.dart';
+import 'package:exec_array/provider/product_provider.dart';
+import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
@@ -9,6 +13,10 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final cartProvider = Provider.of<CartProvider>(context, listen: false);
+      final productProvider = Provider.of<ProductProvider>(context);
+
+     
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -61,6 +69,19 @@ class ProductDetailsScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: RoundButton(title: 'Add to cart',
                  onPress: (){
+                  // add to cart logic 
+                  productProvider.addProduct(product);
+                  Utils.toastMessage('${product.name} is added to cart');
+                  cartProvider.addItem(CartItem(
+                  id: product.id, // Ensure the product ID is used as CartItem ID
+                  name: product.name,
+                  image: product.imagePath,
+                  rentalPrice: product.rentPrice,
+                  purchasePrice: product.salePrice,
+                  quantity: 1,
+                  duration: 1,
+                  isRental: true,
+                ));
                 
                 }),
               ),

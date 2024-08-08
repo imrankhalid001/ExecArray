@@ -475,6 +475,7 @@ class HomePage extends StatelessWidget {
      final productProvider = Provider.of<ProductProvider>(context);
 
 
+
     return InkWell(
       onTap: () {
         // Navigate to the product details page
@@ -517,8 +518,6 @@ class HomePage extends StatelessWidget {
                 icon: Icon(Icons.add_shopping_cart),
                 onPressed: () {
                   // Add to cart logic
-                  productProvider.addProduct(product);
-                   Utils.toastMessage('${product.name} is added to cart');
                   cartProvider.addItem(CartItem(
                   id: product.id, // Ensure the product ID is used as CartItem ID
                   name: product.name,

@@ -239,7 +239,9 @@ class CartItemWidget extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-                  cartProvider.removeItem(index);
+                      int itemId = cartProvider.items[index].id;
+                  cartProvider.removeItem(itemId);
+                   print("Deleted item with id: $itemId");
                 },
               ),
             ),

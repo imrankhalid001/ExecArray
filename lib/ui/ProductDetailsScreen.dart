@@ -69,9 +69,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: RoundButton(title: 'Add to cart',
                  onPress: (){
-                  // add to cart logic 
-                  productProvider.addProduct(product);
-                  Utils.toastMessage('${product.name} is added to cart');
+                  // add to cart logic
                   cartProvider.addItem(CartItem(
                   id: product.id, // Ensure the product ID is used as CartItem ID
                   name: product.name,

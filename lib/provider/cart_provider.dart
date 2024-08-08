@@ -1,4 +1,5 @@
 import 'package:exec_array/servies/database_service.dart';
+import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class CartItem {
@@ -93,10 +94,19 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addItem(CartItem item) async {
-    await DataBaseService.instance.addCartItem(item);
-    _items = await DataBaseService.instance.getCartItems();
-    notifyListeners();
+ Future<void> addItem(CartItem item) async {
+    // Check if the product is already in the cart
+    if (isProductInCart(item.id)) {
+      // Show a toast message if the product is already in the cart
+
+      Utils.toastMessage("Product is already added in the cart");
+    } else {
+         Utils.toastMessage('${item.name} is added to cart');
+      // Otherwise, add the item to the cart
+      await DataBaseService.instance.addCartItem(item);
+      _items = await DataBaseService.instance.getCartItems();
+      notifyListeners();
+    }
   }
 
   Future<void> removeItem(int id) async {
@@ -138,4 +148,12 @@ class CartProvider with ChangeNotifier {
     await DataBaseService.instance.updateCartItem(_items[index]);
     notifyListeners();
   }
+
+
+ // Method to check if the product is already in the cart
+  bool isProductInCart(int productId) {
+    return _items.any((item) => item.id == productId);
+  }
+
+
 }

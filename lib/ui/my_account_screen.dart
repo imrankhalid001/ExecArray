@@ -1,5 +1,6 @@
 import 'package:exec_array/provider/user_provider.dart';
 import 'package:exec_array/routes/routes_name.dart';
+import 'package:exec_array/ui/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -131,6 +132,9 @@ class MyAccountScreen extends StatelessWidget {
             title: 'Payment methods',
             onTap: () {
               // Handle Sell With Us tap
+              Navigator.pushNamed(context, RoutesName.paymentScreen);
+
+
             },
           ),
 

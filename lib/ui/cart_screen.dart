@@ -241,7 +241,6 @@ class CartItemWidget extends StatelessWidget {
                 onPressed: () {
                       int itemId = cartProvider.items[index].id;
                   cartProvider.removeItem(itemId);
-                   print("Deleted item with id: $itemId");
                 },
               ),
             ),

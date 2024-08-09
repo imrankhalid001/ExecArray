@@ -18,6 +18,9 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPress,
+      splashColor: Colors.grey.withOpacity(0.9), // Splash color effect
+      highlightColor: Colors.grey.withOpacity(0.9), // Highlight color effect
+      borderRadius: BorderRadius.circular(10), // Same as container's borderRadius
       child: Container(
         height: 50,
         width: 500,

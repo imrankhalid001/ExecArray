@@ -30,17 +30,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^3.0.1
-  fluttertoast:
+  google_fonts: ^6.2.1
+  fluttertoast: ^8.2.6
   http:
   another_flushbar: ^1.12.30
   provider: ^6.1.2
   shared_preferences:
-  carousel_slider: ^4.2.1
-  connectivity_plus: ^3.0.3
-  cached_network_image: ^3.3.1
-  sqflite: ^2.2.8
-  path: ^1.8.3
+  carousel_slider: ^5.0.0
+  connectivity_plus: ^6.0.5
+  cached_network_image: ^3.4.0
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  flutter_stripe: ^11.0.0
 
 
 

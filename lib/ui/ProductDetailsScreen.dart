@@ -14,7 +14,7 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      final cartProvider = Provider.of<CartProvider>(context, listen: false);
-      final productProvider = Provider.of<ProductProvider>(context);
+     final productProvider = Provider.of<ProductProvider>(context);
 
      
     return SafeArea(

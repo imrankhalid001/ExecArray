@@ -12,7 +12,6 @@ import 'package:exec_array/ui/items/category_items/category_item.dart';
 import 'package:exec_array/ui/items/event_items/event_item.dart';
 import 'package:exec_array/ui/my_account_screen.dart';
 import 'package:exec_array/ui/search_view_screen.dart';
-import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -572,7 +571,7 @@ final List<Widget> imageSliders = imgList
                   ),
       
                   
-                  const Text(
+                   Text(
                     'EVENT MANAGEMENT',
                     style: TextStyle(
                       fontSize: 15,

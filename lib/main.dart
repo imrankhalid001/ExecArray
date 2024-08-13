@@ -5,9 +5,21 @@ import 'package:exec_array/routes/routes.dart';
 import 'package:exec_array/routes/routes_name.dart';
 import 'package:exec_array/ui/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+
+  //Initialize Flutter Binding
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //Assign publishable key to flutter_stripe
+  Stripe.publishableKey = "pk_test_24PsRoB2O46Bxxxxxxxxxxxxxxxxxxxxxxxx";
+
+  //Load our .env file that contains our Stripe Secret key
+  await dotenv.load(fileName: "assets/.env");
+
   runApp(
     MultiProvider(
       providers: [

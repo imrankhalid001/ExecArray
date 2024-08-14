@@ -28,10 +28,10 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ProductProvider()),
 
       ],
-      child: const MyApp(),
+      child: const MyApp(),  
     ),
   );
-}
+} 
 
 class MyApp extends StatelessWidget {
   const

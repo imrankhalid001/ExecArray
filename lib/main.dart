@@ -3,22 +3,14 @@ import 'package:exec_array/provider/user_provider.dart';
 import 'package:exec_array/provider/cart_provider.dart';
 import 'package:exec_array/routes/routes.dart';
 import 'package:exec_array/routes/routes_name.dart';
+import 'package:exec_array/services/consts.dart';
 import 'package:exec_array/ui/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-
-  //Initialize Flutter Binding
-  WidgetsFlutterBinding.ensureInitialized();
-
-  //Assign publishable key to flutter_stripe
-  Stripe.publishableKey = "pk_test_24PsRoB2O46Bxxxxxxxxxxxxxxxxxxxxxxxx";
-
-  //Load our .env file that contains our Stripe Secret key
-  await dotenv.load(fileName: "assets/.env");
+  await _setup();
 
   runApp(
     MultiProvider(
@@ -32,6 +24,11 @@ void main() async {
     ),
   );
 } 
+
+Future<void> _setup() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
+}
 
 class MyApp extends StatelessWidget {
   const

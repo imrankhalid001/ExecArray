@@ -44,3 +44,6 @@ app.*.map.json
 
 # Dotenv
 .env
+
+# Ignore consts.dart in services folder
+lib/services/consts.dart

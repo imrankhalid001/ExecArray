@@ -1,4 +1,4 @@
-import 'package:exec_array/servies/database_service.dart';
+import 'package:exec_array/services/database_service.dart';
 import 'package:exec_array/utils/utils.dart';
 import 'package:flutter/material.dart';
 

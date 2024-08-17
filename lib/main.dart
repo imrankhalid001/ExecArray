@@ -17,7 +17,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()..loadCartItems()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
-        ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => ProductProvider()), 
+        
 
       ],
       child: const MyApp(),  
